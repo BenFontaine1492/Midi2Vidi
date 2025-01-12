@@ -10,6 +10,7 @@ class MidiProcessor:
         self.note_start_times = {}
         self.note_durations = {}
         self.clips = []
+        self.bpm_factor = 200
 
     def _map_notes_to_timestamps(self):
         """Maps MIDI note values to timestamps based on input timestamps."""
@@ -22,7 +23,7 @@ class MidiProcessor:
         """Generates a subclip for a given MIDI note."""
         if note in self.note_to_timestamp and note in self.note_durations:
             start_time = self.note_to_timestamp[note]
-            clip_duration = self.note_durations[note] *1000
+            clip_duration = self.note_durations[note] * self.bpm_factor
             return self.video_manager.get_clip(start_time, clip_duration)
         return None
 
