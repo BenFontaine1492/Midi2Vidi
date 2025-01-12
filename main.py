@@ -24,5 +24,7 @@ if __name__ == "__main__":
     output_path = "./output/video.mp4"
 
     # Generate the video
+    print("generation started")
     generator = MidiVideoGenerator(midi_path, video_path, timestamps, output_path)
     generator.generate_video()
+    print ("generation stopped/finished")
