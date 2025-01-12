@@ -3,6 +3,10 @@ How to Use:
 2. done
 
 Currently only very simple Midi files with single tracks work.
+
+If you want to use another Midi file you might
+need to adjust the bpm factor in the MidiProcessor.
+
 If you want to change the video to you playing another instrument,
 you will need to adjust the timestamps in main.py and upload a video of yourself into the assets folder.
 
