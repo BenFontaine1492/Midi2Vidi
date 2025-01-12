@@ -10,7 +10,7 @@ class MidiProcessor:
         self.note_start_times = {}
         self.note_durations = {}
         self.clips = []
-        self.bpm_factor = 200
+        self.bpm_factor = 300
 
     def _map_notes_to_timestamps(self):
         """Maps MIDI note values to timestamps based on input timestamps."""
