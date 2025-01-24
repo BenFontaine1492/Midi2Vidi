@@ -23,7 +23,7 @@ class MidiProcessor:
         """Generates a subclip for a given MIDI note."""
         if note in self.note_to_timestamp and note in self.note_durations:
             start_time = self.note_to_timestamp[note]
-            clip_duration = self.note_durations[note] * self.bpm_factor
+            clip_duration = self.note_durations[note]
             return self.video_manager.get_clip(start_time, clip_duration)
         return None
 
@@ -37,12 +37,7 @@ class MidiProcessor:
                         msg.time / self.midi_file.ticks_per_beat * 60 / 120
                     )
                 elif msg.type == 'note_off' and msg.note in self.note_start_times:
-                    start_time = self.note_start_times.pop(msg.note)
-                    duration = (
-                        self.video_manager.video.reader.pos / self.video_manager.video.reader.fps +
-                        msg.time / self.midi_file.ticks_per_beat * 60 / 120
-                    ) - start_time
-                    self.note_durations[msg.note] = duration
+                    self.note_durations[msg.note] = msg.time
                     clip = self._get_clip_for_midi_note(msg.note)
                     if clip:
                         self.clips.append(clip)
